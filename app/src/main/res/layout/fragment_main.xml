@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".modules.MainModule.MainActivityFragment"
+    tools:showIn="@layout/activity_main">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></GridLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listener"
+            android:id="@+id/listener"
+            android:onClick="startListenerActivity" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listener Weak Reference"
+            android:id="@+id/listenerWeakRef"
+            android:onClick="startListenerWeakReferenceActivity"
+            android:nestedScrollingEnabled="false" />
+    </LinearLayout>
+
+</RelativeLayout>
