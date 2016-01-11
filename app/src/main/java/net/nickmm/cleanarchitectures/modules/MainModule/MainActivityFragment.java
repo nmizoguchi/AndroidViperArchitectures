@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.squareup.leakcanary.RefWatcher;
+
 import net.nickmm.cleanarchitectures.R;
+import net.nickmm.cleanarchitectures.modules.AppApplication;
 import net.nickmm.cleanarchitectures.modules.ListenerModule.view.ListenerActivity;
 
 /**
@@ -23,5 +26,11 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = AppApplication.getRefWatcher(getActivity());
+        refWatcher.watch(this);
     }
 }

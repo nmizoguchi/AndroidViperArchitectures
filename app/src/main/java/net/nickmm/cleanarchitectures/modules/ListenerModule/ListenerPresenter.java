@@ -25,7 +25,6 @@ public class ListenerPresenter {
                 }
             }
 
-
         });
     }
 

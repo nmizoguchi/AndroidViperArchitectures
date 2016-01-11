@@ -1,24 +1,20 @@
-package net.nickmm.cleanarchitectures.modules.ListenerModule.view;
+package net.nickmm.cleanarchitectures.modules.AbstractListenerModule.Module;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
-import com.squareup.leakcanary.RefWatcher;
-
 import net.nickmm.cleanarchitectures.R;
-import net.nickmm.cleanarchitectures.modules.AppApplication;
 
-public class ListenerActivity extends AppCompatActivity {
+public class AbstractListenerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listener);
+        setContentView(R.layout.activity_abstract_listener);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,10 +28,4 @@ public class ListenerActivity extends AppCompatActivity {
         });
     }
 
-    @Override public void onDestroy() {
-        RefWatcher refWatcher = AppApplication.getRefWatcher(this);
-        refWatcher.watch(this);
-        super.onDestroy();
-        Log.d("ACTIVITY", "Watching");
-    }
 }

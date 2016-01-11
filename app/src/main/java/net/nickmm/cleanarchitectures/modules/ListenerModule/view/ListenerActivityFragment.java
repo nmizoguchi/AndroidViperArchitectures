@@ -1,5 +1,6 @@
 package net.nickmm.cleanarchitectures.modules.ListenerModule.view;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.squareup.leakcanary.RefWatcher;
+
 import net.nickmm.cleanarchitectures.R;
+import net.nickmm.cleanarchitectures.modules.AppApplication;
 import net.nickmm.cleanarchitectures.modules.ListenerModule.ListenerInteractor;
 import net.nickmm.cleanarchitectures.modules.ListenerModule.ListenerPresenter;
 import net.nickmm.cleanarchitectures.modules.ListenerModule.ListenerPresenterListener;
@@ -45,5 +49,12 @@ public class ListenerActivityFragment extends Fragment {
                 presenter.onRequestData();
             }
         });
+    }
+
+    @Override public void onDestroy() {
+        RefWatcher refWatcher = AppApplication.getRefWatcher(getActivity());
+        refWatcher.watch(this);
+        super.onDestroy();
+        Log.d("ACTIVITY", "Watching");
     }
 }

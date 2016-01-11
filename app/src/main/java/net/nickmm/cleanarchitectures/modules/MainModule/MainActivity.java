@@ -10,7 +10,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.squareup.leakcanary.RefWatcher;
+
 import net.nickmm.cleanarchitectures.R;
+import net.nickmm.cleanarchitectures.modules.AbstractListenerModule.Module.AbstractListenerActivity;
+import net.nickmm.cleanarchitectures.modules.AppApplication;
 import net.nickmm.cleanarchitectures.modules.ListenerModule.view.ListenerActivity;
 import net.nickmm.cleanarchitectures.modules.ListenerWeakReferenceModule.ListenerWeakReferenceActivity;
 
@@ -64,4 +68,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListenerWeakReferenceActivity.class);
         startActivity(intent);
     }
+
+    public void startAbstractListenerActivity(View view) {
+        Intent intent = new Intent(this, AbstractListenerActivity.class);
+        startActivity(intent);
+    }
+
+
 }

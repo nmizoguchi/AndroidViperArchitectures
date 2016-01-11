@@ -1,4 +1,4 @@
-package net.nickmm.cleanarchitectures.modules.ListenerWeakReferenceModule;
+package net.nickmm.cleanarchitectures.modules.AbstractListenerModule.Module;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,27 +12,36 @@ import com.squareup.leakcanary.RefWatcher;
 
 import net.nickmm.cleanarchitectures.R;
 import net.nickmm.cleanarchitectures.modules.AppApplication;
+import net.nickmm.cleanarchitectures.modules.ListenerModule.ListenerPresenter;
 import net.nickmm.cleanarchitectures.modules.ListenerModule.ListenerPresenterListener;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ListenerWeakReferenceActivityFragment extends Fragment implements ListenerWeakReferencePresenterListener {
+public class AbstractListenerActivityFragment extends Fragment {
 
-    private ListenerWeakReferencePresenter mPresenter;
-    public ListenerWeakReferenceActivityFragment() {
-        mPresenter = new ListenerWeakReferencePresenter(getContext(), this);
+    private PresenterImpl mPresenter;
+
+    public AbstractListenerActivityFragment() {
+        InteractorImpl interactor = new InteractorImpl(getContext());
+        mPresenter = new PresenterImpl(getContext(),interactor);
+        mPresenter.addListener(new PresenterImplListener() {
+            @Override
+            public void showData(String data) {
+                Log.d("ACTIVITY", data);
+            }
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_listener_weak_reference, container, false);
+        return inflater.inflate(R.layout.fragment_abstract_listener, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Button b = (Button)view.findViewById(R.id.button2);
+        Button b = (Button)view.findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,13 +51,9 @@ public class ListenerWeakReferenceActivityFragment extends Fragment implements L
     }
 
     @Override public void onDestroy() {
-        super.onDestroy();
         RefWatcher refWatcher = AppApplication.getRefWatcher(getActivity());
         refWatcher.watch(this);
-    }
-
-    @Override
-    public void showData(String data) {
-        Log.d("ACTIVITY", data);
+        super.onDestroy();
+        Log.d("ACTIVITY", "Watching");
     }
 }
