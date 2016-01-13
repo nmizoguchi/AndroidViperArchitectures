@@ -25,4 +25,19 @@ public class InteractorImpl extends AbstractInteractor<InteractorImplListener> {
             mListener.loadedData(count++);
         }
     }
+
+    @Override
+    public void onResume() {
+        
+    }
+
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }

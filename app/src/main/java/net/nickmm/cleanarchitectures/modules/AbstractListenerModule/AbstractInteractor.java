@@ -1,14 +1,19 @@
 package net.nickmm.cleanarchitectures.modules.AbstractListenerModule;
 
+import android.app.Activity;
 import android.content.Context;
 
 /**
  * Created by owner on 1/11/16.
  */
-public class AbstractInteractor<Listener_T> {
+public abstract class AbstractInteractor<Listener_T> {
 
     protected Listener_T mListener;
     private Context mContext;
+
+    public abstract void onResume();
+    public abstract void onPause();
+    public abstract void onDestroy();
 
     public AbstractInteractor(Context context) {
         mContext = context;

@@ -1,4 +1,4 @@
-package net.nickmm.data;
+package net.nickmm.cleanarchitectures.data;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

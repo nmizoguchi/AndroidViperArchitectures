@@ -1,4 +1,4 @@
-package net.nickmm.data;
+package net.nickmm.cleanarchitectures.data;
 
 import org.junit.Test;
 

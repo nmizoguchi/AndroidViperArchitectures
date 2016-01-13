@@ -24,7 +24,7 @@ public class AbstractListenerActivityFragment extends Fragment {
 
     public AbstractListenerActivityFragment() {
         InteractorImpl interactor = new InteractorImpl(getContext());
-        mPresenter = new PresenterImpl(getContext(),interactor);
+        mPresenter = new PresenterImpl(getActivity(),interactor);
         mPresenter.addListener(new PresenterImplListener() {
             @Override
             public void showData(String data) {

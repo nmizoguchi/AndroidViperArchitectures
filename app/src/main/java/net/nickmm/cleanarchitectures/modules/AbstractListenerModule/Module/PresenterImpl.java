@@ -1,6 +1,6 @@
 package net.nickmm.cleanarchitectures.modules.AbstractListenerModule.Module;
 
-import android.content.Context;
+import android.app.Activity;
 
 import net.nickmm.cleanarchitectures.modules.AbstractListenerModule.AbstractPresenter;
 
@@ -16,13 +16,13 @@ public class PresenterImpl extends AbstractPresenter<PresenterImplListener> {
 
     private InteractorImpl mInteractor;
 
-    public PresenterImpl(Context context, InteractorImpl interactor) {
-        super(context);
+    public PresenterImpl(Activity activity, InteractorImpl interactor) {
+        super(activity);
         mInteractor = interactor;
         mInteractor.addListener(new InteractorImplListener() {
             @Override
             public void loadedData(int num) {
-                if(mListener != null) mListener.showData("Count " + num);
+                if (mListener != null) mListener.showData("Count " + num);
             }
         });
     }
@@ -32,9 +32,17 @@ public class PresenterImpl extends AbstractPresenter<PresenterImplListener> {
     }
 
     @Override
-    public void removeListener() {
-        super.removeListener();
-        if(mInteractor != null)
-            mInteractor.removeListener();
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        mInteractor.removeListener();
     }
 }
